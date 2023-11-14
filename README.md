@@ -18,6 +18,10 @@ A GH action that retrieves secrets from Infisical using an API instead of instal
 
 **Optional** Output file path. Defaults to `.env`.
 
+### `secret_path`
+
+**Optional** Secret path. Defaults to `/`.
+
 ### `api_url`
 
 **Optional** Infisical API URL. Defaults to `https://api.infisical.com`.

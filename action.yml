@@ -11,6 +11,10 @@ inputs:
     description: 'Output file path (defaults to .env)'
     required: false
     default: '.env'
+  secret_path:
+    description: 'Secret path (defaults to /)'
+    required: false
+    default: '/'
   api_url:
     description: 'Infisical API URL (defaults to https://app.infisical.com)'
     required: false
@@ -21,6 +25,6 @@ runs:
     - name: Fetch secrets from Infisical and convert to .env format
       shell: bash
       run: |
-        curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}" \
+        curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}&secretPath=${{ inputs.secret_path }}" \
         --header "Authorization: Bearer ${{ inputs.infisical_token }}" \
         | jq -r '.secrets[] | "\(.secretKey)=\(.secretValue)"' > ${{ inputs.output_file }}
