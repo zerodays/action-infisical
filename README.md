@@ -2,6 +2,8 @@
 
 A GH action that retrieves secrets from Infisical using an API instead of installing a client binary and outputs them to a file.
 
+**NOTE**: This action depends on `jq` and `curl` being installed in the environment where it is run.
+
 ## Inputs
 
 ### `infisical_token`
