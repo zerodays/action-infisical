@@ -29,7 +29,7 @@ A GH action that retrieves secrets from Infisical using an API instead of instal
 ## Example usage
 
 ```yaml
-uses: zerodays/action-infisical@master
+uses: zerodays/action-infisical@v1
 with:
   infisical_token: ${{ secrets.INFISICAL_TOKEN }}
   environment: "staging"
