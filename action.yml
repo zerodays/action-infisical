@@ -1,0 +1,26 @@
+name: 'Fetch and Format Infisical Secrets'
+description: 'Fetch secrets from Infisical and output them to a specified file'
+inputs:
+  infisical_token:
+    description: 'Infisical API Token'
+    required: true
+  environment:
+    description: 'The environment to fetch secrets for (e.g., staging, production)'
+    required: true
+  output_file:
+    description: 'Output file path (defaults to .env)'
+    required: false
+    default: '.env'
+  api_url:
+    description: 'Infisical API URL (defaults to https://app.infisical.com)'
+    required: false
+    default: 'https://app.infisical.com'
+runs:
+  using: 'composite'
+  steps:
+    - name: Fetch secrets from Infisical and convert to .env format
+      shell: bash
+      run: |
+        curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}" \
+        --header "Authorization: Bearer ${{ inputs.infisical_token }}" \
+        | jq -r '.secrets[] | "\(.secretKey)=\(.secretValue)"' > ${{ inputs.output_file }}
