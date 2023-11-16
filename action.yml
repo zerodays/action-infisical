@@ -4,6 +4,9 @@ inputs:
   infisical_token:
     description: 'Infisical API Token'
     required: true
+  workspace_id:
+    description: 'Infisical Workspace ID'
+    required: true
   environment:
     description: 'The environment to fetch secrets for (e.g., staging, production)'
     required: true
@@ -25,6 +28,6 @@ runs:
     - name: Fetch secrets from Infisical and convert to .env format
       shell: bash
       run: |
-        curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}&secretPath=${{ inputs.secret_path }}" \
+        curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}&secretPath=${{ inputs.secret_path }}&workspaceId=${{ inputs.workspace_id }}" \
         --header "Authorization: Bearer ${{ inputs.infisical_token }}" \
         | jq -r '.secrets[] | "\(.secretKey)=\(.secretValue)"' > ${{ inputs.output_file }}
