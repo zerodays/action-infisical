@@ -1,5 +1,8 @@
 name: 'Fetch and Format Infisical Secrets'
 description: 'Fetch secrets from Infisical and output them to a specified file'
+branding:
+  icon: 'arrow-down-circle'
+  color: 'yellow'
 inputs:
   infisical_token:
     description: 'Infisical API Token'
@@ -31,3 +34,5 @@ runs:
         curl "${{ inputs.api_url }}/api/v3/secrets/raw?environment=${{ inputs.environment }}&secretPath=${{ inputs.secret_path }}&workspaceId=${{ inputs.workspace_id }}" \
         --header "Authorization: Bearer ${{ inputs.infisical_token }}" \
         | jq -r '.secrets[] | "\(.secretKey)=\(.secretValue)"' > ${{ inputs.output_file }}
+    - shell: bash
+      run: echo "Secrets fetched and formatted to ${{ inputs.output_file }}".
