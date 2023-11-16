@@ -2,7 +2,8 @@
 
 A GH action that retrieves secrets from Infisical using an API instead of installing a client binary and outputs them to a file.
 
-**NOTE**: This action depends on `jq` and `curl` being installed in the environment where it is run.
+**NOTE 1**: This action depends on `jq` and `curl` being installed in the environment where it is run.
+**NOTE 2**: In order to use this GitHub Action, you need to **disable E2EE** in Infisical for the workspace in question. This has some security implications - do this at your own risk.
 
 ## Inputs
 
