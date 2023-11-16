@@ -14,7 +14,7 @@ This action **is unofficial** and was created by the [zerodays](https://github.c
 
 **Required** Infisical API Token.
 
-## `workspace_id`
+### `workspace_id`
 
 **Required** Infisical Workspace ID.
 
