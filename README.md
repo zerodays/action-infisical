@@ -40,5 +40,6 @@ This action **is unofficial** and was created by the [zerodays](https://github.c
 uses: zerodays/action-infisical@v1
 with:
   infisical_token: ${{ secrets.INFISICAL_TOKEN }}
+  workspace_id: ${{ secrets.INFISICAL_WORKSPACE_ID }}
   environment: "staging"
 ```
